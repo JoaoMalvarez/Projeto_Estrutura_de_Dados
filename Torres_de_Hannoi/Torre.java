@@ -1,6 +1,6 @@
 package Torres_de_Hannoi;
 
-// joao (já foi feita)
+// cat (já foi feita)
 
 import java.util.Comparator;
 
