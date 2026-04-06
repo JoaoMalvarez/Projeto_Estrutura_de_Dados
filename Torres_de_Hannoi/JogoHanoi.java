@@ -33,20 +33,16 @@ public class JogoHanoi {
     public void executarMovimento(int de, int para) throws Exception {
         Torre<Disco> origem = selecionar(de);
         Torre<Disco> destino = selecionar(para);
-        Disco numO = origem.topo();
-        Disco numD = destino.topo();
 
-        if (!origem.isEmpty() && numO.getTamanho() > numD.getTamanho()) throw new Exception("Jogada impossível!");
-        
         if (origem.isEmpty()) throw new Exception("Torre de origem está vazia!");
-        
-        Disco d = origem.pop();
-        try { 
-            destino.push(d); 
-        } catch (Exception e) { 
-            origem.setupPush(d); // Devolve o disco se o movimento for inválido
-            throw e; 
+
+        if (!destino.isEmpty() && origem.topo().getTamanho() > destino.topo().getTamanho()) { //tbm Evita que o Java tente comparar o tamanho de um disco que não existe
+        throw new Exception("Movimento inválido: O disco de origem é maior que o disco no destino!");
         }
+        //Se chegou aqui, o movimento é 100% seguro
+        Disco d = origem.pop();
+        destino.push(d);
+
     }
 
     private Torre<Disco> selecionar(int n) {
@@ -56,10 +52,6 @@ public class JogoHanoi {
     public boolean verificarVitoriaT3() {
         return t1.isEmpty() && t2.isEmpty() && t3.sizeElements() == numDiscos;
     }
-
-    public boolean verificarVitoriaT2() {
-        return t1.isEmpty() && t2.sizeElements() == numDiscos && t3.isEmpty();
-   }
 
     public void mostrarTorres() throws Exception {
         while (!t1.isEmpty() && !t2.isEmpty() && !t3.isEmpty()) {
@@ -73,7 +65,7 @@ public class JogoHanoi {
         int espacosVazios2 = numDiscos - print2.size();
         int espacosVazios3 = numDiscos - print3.size();
 
-        for (int i = 0; i > numDiscos; i++) {
+        for (int i = 0; i < numDiscos; i++) {
             if (i < espacosVazios1) {
                 System.out.print(" ".repeat(numDiscos) + "|" + " ".repeat(numDiscos) + " ");
             } else {

@@ -1,7 +1,5 @@
 package Torres_de_Hannoi;
 
-// cat e helo
-
 import java.util.Scanner;
 
 public class Main {
@@ -52,6 +50,11 @@ public class Main {
                     destino = scanner.nextInt();
                     try { 
                         jogo.executarMovimento(origem, destino); //move os discos de uma torre para outra
+                        if (jogo.verificarVitoriaT3() == true) {
+                             System.out.println("Você ganhou!");
+                         }
+                         break;
+                    
                     } catch (Exception e) {
                         System.out.println("Erro ao mover disco: " + e.getMessage());
                     }
@@ -70,10 +73,10 @@ public class Main {
                 case 3:
                     try {
                         jogo.reiniciar(); //reinicia o jogo, ou seja, volta os discos para a torre 1
+                        System.out.println("Jogo reiniciado!");
                     } catch (Exception e) {
                         System.out.println("Erro ao reiniciar o jogo: " + e.getMessage());
                     }   
-                    System.out.println("Jogo reiniciado!");
                     break;
 
                 case 4:
@@ -84,11 +87,7 @@ public class Main {
                     System.out.println("Opção inválida!"); //caso o usuario digite algo errado, isso aparece; tipo um else em if else -> se o usuario digita algo que nao e compativel com os outros cases, ele pula para o default
             }
 
-        } while (opcao != 4 || !jogo.verificarVitoriaT2() || !jogo.verificarVitoriaT3()); //o menu se repete ate o usuario escolher a opcao 4, que no caso é sair do jogo
-
-        if (jogo.verificarVitoriaT2() == true || jogo.verificarVitoriaT3() == true) {
-            System.out.println("Você ganhou!");
-        }
+        } while (opcao != 4); //o menu se repete ate o usuario escolher a opcao 4, que no caso é sair do jogo
 
         scanner.close(); 
     }
