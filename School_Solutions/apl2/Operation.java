@@ -3,13 +3,15 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes do Grupo:
+// Catarina Silva e Meirelles / RA: 10239324
+// Heloisa Martelle / RA: 10738274
+// João Pedro Mazzante Alvarez / RA: 10723837
 
 package apl2;
 
 public class Operation {
-
-	/**
+/**
 	 * <p>Recebe como parâmetro uma lista encadeada do tipo {@code LinkedListOriginal}, sendo que os nós da lista estão
 	 * populados com o conteúdo da base de dados original (conteúdo do arquivo dados.txt).</p>
 	 * <p>A operação {@code map()} deve mapear os dados originais para uma lista encadeada do tipo {@code DLinkedList} e
@@ -19,11 +21,23 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas. 
 	 */
 	public static DLinkedList map(final LinkedListOriginal original) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+	  DLinkedList nova = new DLinkedList();
+	  NodeOriginal nodeO = original.getHead();
+		while (nodeO != null){
+			float nota;
+			if (nodeO.getInteiro() == -1 || nodeO.getDecimo() == -1){
+				nota = 99.9f;
+			}else{
+				nota = nodeO.getInteiro() + ( nodeO.getDecimo() / 10.0f);
+			}
+			String novoId = "26.S1-" + String.format("%03d", nodeO.getId());//para que mesmo se fosse 5 -> 005, por isso o string format
+			
+			nova.append(novoId, nodeO.getNome(), nota );
+			nodeO = nodeO.getNext();
+		}
+		return nova;
 	}
-
-	/**
+/**
 	 * <p>Recebe como parâmetro uma lista duplamente encadeada do tipo {@code DLinkedList}, sendo que os nós da lista estão
 	 * populados com o resultado da operação {@code map()}.</p>
 	 * <p>A operação {@code filterRemoveNonGraded()} deve filtrar os nós que não possuem notas válidas (caso de "ausência de nota")
@@ -33,11 +47,17 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
 	 */
 	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList dataFiltrada = new DLinkedList();
+	  Node node = data.getHead();
+		while (node != null){
+			if (node.getNota() != 99.9){ //if (Math.abs(node.getNota() - 99.9f) > 0.001f)-> testar
+				dataFiltrada.append(node.getId(), node.getNome(), node.getNota());
+			}
+			node = node.getNext();
+		}
+		return dataFiltrada;
 	}
-
-	/**
+		/**
 	 * <p>Recebe como parâmetro uma lista duplamente encadeada do tipo {@code DLinkedList}, sendo que os nós da lista estão
 	 * populados com o resultado da operação {@code map()}.</p>
 	 * <p>A operação {@code filterRemoveGraded()} deve filtrar os nós que possuem notas válidas e retornar uma nova lista do
@@ -47,8 +67,15 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas inválidas.
 	 */
 	public static DLinkedList filterRemoveGraded(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList dataFiltrada = new DLinkedList();
+	  Node node = data.getHead();
+		while (node != null){
+			if (node.getNota() == 99.9){ //if (Math.abs(node.getNota() - 99.9f) <= 0.001f)-> testar
+				dataFiltrada.append(node.getId(), node.getNome(), node.getNota());
+			}
+			node = node.getNext();
+		}
+		return dataFiltrada;
 	}
 
 	/**
@@ -61,10 +88,18 @@ public class Operation {
 	 * @param data Base de dados filtrada com a operação {@code filterRemoveNonGraded()}.
 	 * @param average Média de notas válidas calculada com a operação {@code reduce()}.
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada somente com pessoas com notas maiores do que {@code average}.
+	 obs: quando ele fala filtrada com a operação x, eu devo filtrar eu mesma aqui para ter certeza ou eu considero que a função já estará filtrada? afinal não machuca adicionar
 	 */
 	public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList dataFiltrada = new DLinkedList();
+	  Node node = data.getHead();
+		while (node != null){
+			if (node.getNota() >= average){ //pq o contrario de menor é maior igual.
+				dataFiltrada.append(node.getId(), node.getNome(), node.getNota());
+			}
+			node = node.getNext();
+		}
+		return dataFiltrada;
 	}
 	
 	/**
@@ -77,10 +112,14 @@ public class Operation {
 	 * @return Média das notas ({@code float}) contidas na coleção de dados ({@code data}).
 	 */
 	public static float reduce(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		float media = 0f;
+	  Node node = data.getHead();
+		while (node != null){
+			media += node.getNota();
+			node = node.getNext();
+		}
+		return media/data.count();
 	}
-
 	/**
 	 * <p>Recebe como parâmetro uma lista duplamente encadeada do tipo {@code DLinkedList}, sendo que os nós da lista estão
 	 * populados com o resultado da operação {@code map()}.</p>
@@ -92,8 +131,12 @@ public class Operation {
 	 * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
 	 */
 	public static String mapToString(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		String dataStr = "";
+	  Node node = data.getHead();
+		while (node != null){
+			dataStr += node.getId()+ ";" + node.getNome() + ";" + String.format("%.1f", node.getNota()) + "\n";		
+			node = node.getNext();
+		}
+		return dataStr;
 	}
-
 }
