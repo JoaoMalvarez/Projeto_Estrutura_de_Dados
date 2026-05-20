@@ -3,7 +3,10 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes do Grupo:
+// Catarina Silva e Meirelles / RA: 10239324
+// Heloisa Martelle / RA: 10738274
+// João Pedro Mazzante Alvarez / RA: 10723837
 
 package apl2;
 
