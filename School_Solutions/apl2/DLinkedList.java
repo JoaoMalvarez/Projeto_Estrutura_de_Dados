@@ -18,125 +18,215 @@ package apl2;
 // comportamento descrito em cada operação.
 
 public class DLinkedList {
-	
-	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
 
+	private Node head;
+	private Node tail;
+	private int count;
+
+// =======================================================================================
 
 // OPERAÇÃO:		Método construtor
 // COMPORTAMENTO:	Cria uma lista vazia.
 	public DLinkedList() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		head = tail = null;
+		count = 0;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		insert(<dados da pessoa>)
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no início da lista.
-	public void insert(/*dados da pessoa*/) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+	public void insert(String id, String nome, float nota) {
+		Node aux = new Node(id, nome, nota, null, null);
+		if (isEmpty()) {
+			head = tail = aux;
+		} else {
+			aux.setNext(head);
+			head.setPrev(aux);
+			head = aux;
+		}
+		count++;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		append(<dados da pessoa>)
 // COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
 //					novo nó no final da lista.
-	public void append(/*dados da pessoa*/) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+	public void append(String id, String nome, float nota) {
+		Node aux = new Node(id, nome, nota, null, null);
+		if (isEmpty()) {
+			head = tail = aux;
+		} else {
+			tail.setNext(aux);
+			aux.setPrev(tail);
+			tail = aux;
+		}
+		count++;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO: 		removeHead()
 // COMPORTAMENTO:	Remove o nó do início da lista e retorna a referência do
 //					nó removido.
 //					Ou retorna null caso a lista esteja vazia.
 	public Node removeHead() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if (isEmpty()) return null;
+		else {
+			Node pAux = head;
+			if (count == 1) {
+				head = tail = null;
+			} else {
+				head = head.getNext();
+				head.setPrev(null);
+			}
+			pAux.setNext(null);
+			pAux.setPrev(null);
+			count--;
+			return pAux;
+		}
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		removeTail()
 // COMPORTAMENTO:	Remove o nó do final da lista e retorna a referência do
 //					nó removido.
 //					Ou retorna null caso a lista esteja vazia.
 	public Node removeTail() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if (isEmpty()) return null;
+		else {
+			Node pAux = tail;
+			if (count == 1) {
+				head = tail = null;
+			} else {
+				tail = tail.getPrev();
+				tail.setNext(null);
+			}
+			pAux.setNext(null);
+			pAux.setPrev(null);
+			count--;
+			return pAux;
+		}
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		removeNode(<ID da pessoa>)
 // COMPORTAMENTO:	Remove o nó que contém o <ID da pessoa> da lista e retorna
 //					a referência do nó removido.
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node removeNode(String id) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if (isEmpty()) return null;
+		Node pAnda = head;
+		while (pAnda != null) {
+			if (pAnda.getId().equals(id)) {
+				if (pAnda == head) return removeHead();
+				if (pAnda == tail) return removeTail();
+				pAnda.getPrev().setNext(pAnda.getNext());
+				pAnda.getNext().setPrev(pAnda.getPrev());
+				pAnda.setNext(null);
+				pAnda.setPrev(null);
+				count--;
+				return pAnda;
+			}
+			pAnda = pAnda.getNext();
+		}
+		return null;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		getHead()
 // COMPORTAMENTO:	Retorna uma referência para o nó do início da lista.
 //					Ou retorna null caso a lista esteja vazia.
 	public Node getHead() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return head;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		getTail()
 // COMPORTAMENTO:	Retorna uma referência para o nó do final da lista.
 //					Ou retorna null caso a lista esteja vazia.
 	public Node getTail() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return tail;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		getNode(<ID da pessoa>)
 // COMPORTAMENTO:	Retorna uma referência para o nó que contém o <ID da pessoa>
 //					da lista.
 //					Ou retorna null caso não exista um nó com <ID da pessoa>.
 	public Node getNode(String id) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		Node pAnda = head;
+		while (pAnda != null) {
+			if (pAnda.getId().equals(id)) {
+				return pAnda;
+			}
+			pAnda = pAnda.getNext();
+		}
+		return null;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		count()
 // COMPORTAMENTO:	Retorna a quantidade de nós da lista.
 	public int count() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return count;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		isEmpty()
 // COMPORTAMENTO:	Retorna true se a lista estiver vazia ou false, caso contrário.
 	public boolean isEmpty() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return head == null;
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		clear()
 // COMPORTAMENTO:	Esvazia a lista, liberando a memória de todos os nós da lista.
 	public void clear() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		while (!isEmpty()) {
+			removeHead();
+		}
 	}
 
+// =======================================================================================
 
 // OPERAÇÃO:		toString()
 // COMPORTAMENTO:	Retorna uma string com o conteúdo da lista (caso queira, use o
 //					exemplo do método toString() da classe LinkedListOriginal).
 	@Override
 	public String toString() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("(" + count + ") \n");
+
+		Node node = head;
+		while (node != null) {
+			String prevId = (node.getPrev() != null) ? node.getPrev().getId() : "null";
+			String nextId = (node.getNext() != null) ? node.getNext().getId() : "null";
+			sb.append(prevId)
+			  .append(" <- (")
+			  .append(node.getId())
+			  .append("; ")
+			  .append(node.getNome())
+			  .append("; ")
+			  .append(node.getNota())
+			  .append(") -> ")
+			  .append(nextId)
+			  .append("\n");
+			node = node.getNext();
+		}
+
+		return sb.toString();
 	}
 
 }

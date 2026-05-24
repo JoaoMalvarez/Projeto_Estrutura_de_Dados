@@ -50,7 +50,7 @@ public class Operation {
 		DLinkedList dataFiltrada = new DLinkedList();
 	  Node node = data.getHead();
 		while (node != null){
-			if (node.getNota() != 99.9){ //if (Math.abs(node.getNota() - 99.9f) > 0.001f)-> testar
+			if (node.getNota() != 99.9f){ //if (Math.abs(node.getNota() - 99.9f) > 0.001f)-> testar
 				dataFiltrada.append(node.getId(), node.getNome(), node.getNota());
 			}
 			node = node.getNext();
@@ -70,7 +70,7 @@ public class Operation {
 		DLinkedList dataFiltrada = new DLinkedList();
 	  Node node = data.getHead();
 		while (node != null){
-			if (node.getNota() == 99.9){ //if (Math.abs(node.getNota() - 99.9f) <= 0.001f)-> testar
+			if (node.getNota() == 99.9f){ //if (Math.abs(node.getNota() - 99.9f) <= 0.001f)-> testar
 				dataFiltrada.append(node.getId(), node.getNome(), node.getNota());
 			}
 			node = node.getNext();
