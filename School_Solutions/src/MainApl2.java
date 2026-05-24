@@ -13,13 +13,13 @@
 // Referências consultadas:
 // TODO: Listar todas as referências consultadas para solucionar a atividade.
 
+import java.util.Scanner; // para ler a opção do menu
+
 import apl2.DLinkedList;
+import apl2.Data;
 import apl2.LinkedListOriginal;
 import apl2.Node;
 import apl2.Operation;
-
-import apl2.Data;
-import java.util.Scanner; // para ler a opção do menu
 
 public class MainApl2 {
 
@@ -127,59 +127,63 @@ public class MainApl2 {
 				}
 				break;
 
-// ==================================================================================================================================================================
 
-			case 8:
-					System.out.println("Finalizando sistema...");
-				break;
-
-				default:
-					System.out.println("Opção inválida. Digite um número entre 1 e 8.");
-				break;
-			}
-		}
 // ==================================================================================================================================================================
+		
+		case 9:
 		// TESTES
-//		Node test1 = fixedList.getNode("23.S1-999");
-//		System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1 + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
+		Node test1 = fixedList.getNode("23.S1-999"); 
+		System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1 + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
 
-//		Node test2 = fixedList.removeNode("23.S1-999");
-//		System.out.println(">>>>>>>>>> test2 >>>>>>>>>>\n" + test2 + "\n<<<<<<<<<< test2 <<<<<<<<<<\n");
+		Node test2 = fixedList.removeNode("23.S1-999");
+		System.out.println(">>>>>>>>>> test2 >>>>>>>>>>\n" + test2 + "\n<<<<<<<<<< test2 <<<<<<<<<<\n");
 
-//		Node test3 = fixedList.getNode("23.S1-999");
-//		System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3 + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
+		Node test3 = fixedList.getNode("23.S1-999");
+		System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3 + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
 
-//		aboveAverageList.clear();
-//		System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
+		aboveAverageList.clear(); // primeiro limpa, dps mostra
+		System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
 
-//		DLinkedList testList = new DLinkedList();
-//		try { testList.insert("ABC", "John Doe", 4.7f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.append("XYZ", "Jane Doe", 9.9f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.insert("321", "Test", 2.3f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.append("Nothing", "Yada yada yada", 99.9f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		DLinkedList testList = new DLinkedList();
+		try { testList.insert("ABC", "John Doe", 4.7f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.append("XYZ", "Jane Doe", 9.9f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.insert("321", "Test", 2.3f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.append("Nothing", "Yada yada yada", 99.9f); } catch (Exception e) { System.err.println(e.getMessage()); }
 
-//		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
-//		System.out.println("testList.getHead(): " + testList.getHead());
-//		System.out.println("testList.getTail(): " + testList.getTail());
-//		System.out.println("testList.removeHead(): " + testList.removeHead());
-//		System.out.println("testList.removeTail(): " + testList.removeTail() + '\n');
-//		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
-//		System.out.println("testList.getHead(): " + testList.getHead());
-//		System.out.println("testList.getTail(): " + testList.getTail());
-//		System.out.println("testList.removeNode(\"ABC\"): " + testList.removeNode("ABC") + '\n');
-//		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
-//		System.out.println("testList.getHead(): " + testList.getHead());
-//		System.out.println("testList.getTail(): " + testList.getTail() + '\n');
+		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+		System.out.println("testList.getHead(): " + testList.getHead());
+		System.out.println("testList.getTail(): " + testList.getTail());
+		System.out.println("testList.removeHead(): " + testList.removeHead());
+		System.out.println("testList.removeTail(): " + testList.removeTail() + '\n');
+		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+		System.out.println("testList.getHead(): " + testList.getHead());
+		System.out.println("testList.getTail(): " + testList.getTail());
+		System.out.println("testList.removeNode(\"ABC\"): " + testList.removeNode("ABC") + '\n');
+		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+		System.out.println("testList.getHead(): " + testList.getHead());
+		System.out.println("testList.getTail(): " + testList.getTail() + '\n');
 
-//		try { testList.insert("qwerty", "QWERTY", 1.2f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.append("WASD", "wasd", 3.4f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.insert("ijkl", "IJKL", 5.6f); } catch (Exception e) { System.err.println(e.getMessage()); }
-//		try { testList.append("1234", "Um Dois Tres Quatro", 7.8f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.insert("qwerty", "QWERTY", 1.2f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.append("WASD", "wasd", 3.4f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.insert("ijkl", "IJKL", 5.6f); } catch (Exception e) { System.err.println(e.getMessage()); }
+		try { testList.append("1234", "Um Dois Tres Quatro", 7.8f); } catch (Exception e) { System.err.println(e.getMessage()); }
 
-//		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
-//		testList.clear();
-//		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-		// =========================================================================================
+		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
+		testList.clear();
+		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
+		break;
+// ==================================================================================================================================================================
 
+		case 8:
+				System.out.println("Finalizando sistema...");
+			break;
+
+			default:
+				System.out.println("Opção inválida. Digite um número entre 1 e 8.");
+			break;
+		}
+	}
+// =========================================================================================
+				
 	}
 }

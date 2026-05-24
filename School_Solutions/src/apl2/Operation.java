@@ -30,7 +30,7 @@ public class Operation {
 			}else{
 				nota = nodeO.getInteiro() + ( nodeO.getDecimo() / 10.0f);
 			}
-			String novoId = "26.S1-" + String.format("%03d", nodeO.getId());//para que mesmo se fosse 5 -> 005, por isso o string format
+			String novoId = "23.S1-" + String.format("%03d", nodeO.getId());//para que mesmo se fosse 5 -> 005, por isso o string format
 			
 			nova.append(novoId, nodeO.getNome(), nota );
 			nodeO = nodeO.getNext();
